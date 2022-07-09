@@ -3,7 +3,7 @@ import Orders from "../controllers/orders.controller.js";
 
 const ordersRoute = express.Router();
 
-ordersRoute.get('/', Orders.find);
+ordersRoute.get('/', Orders.fetchAll);
 ordersRoute.get('/:orderId', Orders.findById);
 ordersRoute.post('/', Orders.create);
 ordersRoute.delete('/:orderId', Orders.deleteById);

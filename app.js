@@ -1,3 +1,4 @@
+import 'express-async-errors';
 import express from 'express';
 import middleware from './middlewares/index.middleware.js';
 import pino from 'pino';
