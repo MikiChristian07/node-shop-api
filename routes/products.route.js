@@ -1,6 +1,7 @@
 import express from 'express';
 import multer from 'multer';
 import Products from "../controllers/products.controller.js";
+import checkAuth from '../middlewares/auth.middleware.js';
 
 const storage = multer.diskStorage({
     destination: function(req, file, callback){
@@ -30,8 +31,8 @@ const productsRoute = express.Router();
 
 productsRoute.get('/', Products.fetchAll);
 productsRoute.get('/:productId', Products.findById);
-productsRoute.post('/', uploads.single('productImage'), Products.create);
-productsRoute.patch('/:productId', Products.patchById);
-productsRoute.delete('/:productId', Products.deleteById);
+productsRoute.post('/', checkAuth, uploads.single('productImage'), Products.create);
+productsRoute.patch('/:productId', checkAuth,Products.patchById);
+productsRoute.delete('/:productId', checkAuth,Products.deleteById);
 
 export default productsRoute;
